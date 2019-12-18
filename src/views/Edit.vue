@@ -22,22 +22,16 @@
 
         <v-tab-item value="tab-skills">
           <v-card flat tile>
-
+            <EditSkills />
           </v-card>
         </v-tab-item>
 
         <v-tab-item value="tab-content">
           <v-card flat tile>
-
+            <EditContent />
           </v-card>
         </v-tab-item>
       </v-tabs>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex xs4 v-for="project in projects" :key="project.id">
-        <ProjectItem :project="project" class="ma-4"/>
-      </v-flex>
-
     </v-layout>
   </v-container>
 </template>
@@ -45,10 +39,15 @@
 <script>
 
   import EditSocials from '../components/EditSocials';
+  import EditSkills from '../components/EditSkills';
+  import EditContent from '../components/EditContent';
+
 export default {
   name: 'Edit',
   components: {
-    EditSocials
+    EditSocials,
+    EditSkills,
+    EditContent,
   }
 }
 </script>

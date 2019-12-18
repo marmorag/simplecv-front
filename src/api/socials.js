@@ -6,17 +6,19 @@ const config = {
   }
 };
 
+const url = `${process.env.VUE_APP_API_URL}/api/socials`;
+
 export default {
     fetchSocials: () => {
-        return axios.get('http://localhost:8000/api/socials');
+        return axios.get(url);
     },
     updateSocials: (social) => {
-        return axios.put(`http://localhost:8000/api/socials/${social.id}`, social, config);
+        return axios.put(`${url}/${social.id}`, social, config);
     },
     createSocials: (social) => {
-        return axios.post('http://localhost:8000/api/socials', social, config);
+        return axios.post(url, social, config);
     },
     deleteSocials: (social) => {
-        return axios.delete(`http://localhost:8000/api/socials/${social.id}`);
+        return axios.delete(`${url}/${social.id}`);
     }
 }

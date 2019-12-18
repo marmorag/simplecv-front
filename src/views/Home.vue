@@ -17,41 +17,7 @@
                             <v-layout row>
                                 <h2>Guillaume Marmorat - Web Developer</h2>
                             </v-layout>
-                            <v-layout row wrap class="blockquote">
-                                <div>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad adipisci
-                                    aspernatur, assumenda consequuntur cupiditate delectus dolorem eaque, eum explicabo
-                                    inventore ipsum neque obcaecati officia perferendis ratione tempore veritatis
-                                    voluptate.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad adipisci
-                                    aspernatur, assumenda consequuntur cupiditate delectus dolorem eaque, eum explicabo
-                                    inventore ipsum neque obcaecati officia perferendis ratione tempore veritatis
-                                    voluptate.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad adipisci
-                                    aspernatur, assumenda consequuntur cupiditate delectus dolorem eaque, eum explicabo
-                                    inventore ipsum neque obcaecati officia perferendis ratione tempore veritatis
-                                    voluptate.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad adipisci
-                                    aspernatur, assumenda consequuntur cupiditate delectus dolorem eaque, eum explicabo
-                                    inventore ipsum neque obcaecati officia perferendis ratione tempore veritatis
-                                    voluptate.
-                                </div>
-                                <div>Adipisci aliquam delectus fugit, ipsum maiores molestias necessitatibus nisi nobis,
-                                    reiciendis ut vel, veniam. Adipisci delectus deleniti dolorem eos harum labore neque
-                                    quae quaerat, qui rerum, soluta vitae! Illum, laborum.
-                                </div>
-                                <div>A architecto, aut dolorem, dolores ex expedita facilis fugit hic id iure magnam
-                                    neque nobis numquam pariatur porro possimus qui quos ratione recusandae repellendus
-                                    suscipit temporibus ut veritatis voluptate voluptates.
-                                </div>
-                                <div>A aliquam aspernatur at atque blanditiis dicta error est ex excepturi hic neque
-                                    nihil nobis omnis praesentium quo recusandae rem repudiandae sint soluta suscipit,
-                                    ullam vel vitae voluptate voluptates voluptatibus.
-                                </div>
-                                <div>Architecto cum doloremque et nihil quam vel vero. Aliquid aspernatur culpa facere
-                                    impedit maxime nihil, non odit, provident quasi velit, veritatis vitae. Accusamus
-                                    dolore eius iusto necessitatibus perspiciatis praesentium tenetur.
-                                </div>
+                            <v-layout row wrap class="blockquote" v-html="content">
                             </v-layout>
                         </v-card-text>
                     </v-card>
@@ -86,6 +52,7 @@
     import ProjectItem from "../components/ProjectItem";
     import projectList from '../assets/projects';
     import unsplashApi from '../api/unsplash';
+    import contentAPi from '../api/content';
 
     export default {
         name: 'Home',
@@ -102,6 +69,10 @@
         created() {
             unsplashApi.fetchRandomImage().then((urls) => {
                 this.urls = urls;
+            })
+
+            contentAPi.fetch().then(response => {
+                this.content = response.data['hydra:member'][0].content
             })
         }
     }

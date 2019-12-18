@@ -8,9 +8,16 @@
         data() {
             return {
                 skills: [],
-                loading: false,
                 options: {
-
+                    scale: {
+                        angleLines: {
+                            display: false
+                        },
+                        ticks: {
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
                 }
             };
         },
@@ -20,8 +27,6 @@
         methods: {
             async fetchSkills() {
                 let response = await api.fetchSkills();
-                // eslint-disable-next-line no-console
-                console.log(response.data['hydra:member']);
                 this.skills = this.format(response.data['hydra:member']);
 
                 this.renderChart(this.skills, this.options);
@@ -38,9 +43,6 @@
                     finalData.labels.push(elm.name);
                     finalData.datasets[0].data.push(elm.level);
                 });
-
-                // eslint-disable-next-line no-console
-                console.log(finalData);
 
                 return finalData;
             }
