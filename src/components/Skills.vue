@@ -36,8 +36,11 @@
 
                 apiData.forEach(elm => {
                     finalData.labels.push(elm.name);
-                   finalData.datasets[0].data.push(elm.level);
+                    finalData.datasets[0].data.push(elm.level);
                 });
+
+                // eslint-disable-next-line no-console
+                console.log(finalData);
 
                 return finalData;
             }

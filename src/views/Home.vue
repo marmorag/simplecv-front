@@ -67,6 +67,11 @@
             </v-tabs>
         </v-layout>
         <v-layout row wrap>
+            <v-flex xs12>
+                <v-carousel>
+                    <v-carousel-item v-for="(url, i) in urls" :key="i" :src="url"></v-carousel-item>
+                </v-carousel>
+            </v-flex>
             <v-flex xs4 v-for="project in projects" :key="project.id">
                 <ProjectItem :project="project" class="ma-4"/>
             </v-flex>
@@ -80,6 +85,7 @@
     import Skills from '../components/Skills';
     import ProjectItem from "../components/ProjectItem";
     import projectList from '../assets/projects';
+    import unsplashApi from '../api/unsplash';
 
     export default {
         name: 'Home',
@@ -89,8 +95,14 @@
         },
         data: function () {
             return {
-                projects: projectList
+                projects: projectList,
+                urls: [],
             }
+        },
+        created() {
+            unsplashApi.fetchRandomImage().then((urls) => {
+                this.urls = urls;
+            })
         }
     }
 </script>
