@@ -66,7 +66,6 @@
                 level: 0,
             },
             defaultItem: {
-                id: '',
                 name: '',
                 level: 0,
             },
@@ -123,9 +122,13 @@
                     Object.assign(this.skills[this.editedIndex], this.editedItem);
                     skillsApi.updateSkills(this.editedItem);
                 } else {
+                    if (this.editedItem.id !== undefined) {
+                        delete this.editedItem.id;
+                    }
+
                     this.editedItem.level = parseInt(this.editedItem.level);
                     this.skills.push(this.editedItem);
-                    skillsApi.createSkills(this.editedIndex);
+                    skillsApi.createSkills(this.editedItem);
                 }
                 this.close();
             },

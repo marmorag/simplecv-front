@@ -66,7 +66,6 @@
                 icon: '',
             },
             defaultItem: {
-                id: '',
                 link: '',
                 icon: '',
             },
@@ -124,7 +123,7 @@
                     socialsApi.updateSocials(this.editedItem);
                 } else {
                     this.socials.push(this.editedItem);
-                    socialsApi.createSocials(this.editedIndex);
+                    socialsApi.createSocials(this.editedItem);
                 }
                 this.close();
             },
